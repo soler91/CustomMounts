@@ -14,8 +14,6 @@ module.exports = function CustomMounts(dispatch) {
 	dispatch.hook('S_LOGIN', 2, (event) => {cid = event.cid});
 	
 	dispatch.hook('S_MOUNT_VEHICLE', 1, (event) => {
-	console.log('Target:'+event.target+' CID:'+target)
-	
     if(customMount > 0 && customMount < 257) {
 		if(event.target.toString() === cid.toString()){
 			event.unk1 = customMount;
