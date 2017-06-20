@@ -1,15 +1,34 @@
-//Credits to Tera-Love and Saegusa
-const format = require('./format.js');
+const Command = require('command'),
+		path = require('path'),
+		fs = require('fs')
 
 module.exports = function CustomMounts(dispatch) {
-    
+    const command = Command(dispatch)
+	
 	let target, customMount = 0;
 	
 	const INVALID = [4,100,105,106,107,108,109,110,111,112,
-			113,114,115,116,117,118,119,120,121,122,
-			123,124,125,126,127,128,129,130,131,132,
-			133,134,135,136,137,138,139,140,141,142,
-			143,144,145,146,147,148,149];
+					113,114,115,116,117,118,119,120,121,122,
+					123,124,125,126,127,128,129,130,131,132,
+					133,134,135,136,137,138,139,140,141,142,
+					143,144,145,146,147,148,149];
+					
+	try {
+		customMount = require('./mount.json')
+	}
+	catch(e) {}
+
+	command.add('mount', (mount) => {
+		customMount = parseInt(mount);
+			for (i = 0; i < INVALID.length; i++) {
+				if(INVALID[i] == customMount){
+				command.message('The value: '+customMount+' is invalid, try another.');
+				customMount = 0;
+				}
+			}
+			command.message('Mount set to: '+mount+'.');
+		saveMount()
+	});
 	
 	dispatch.hook('S_LOGIN', 2, (event) => {cid = event.cid});
 	
@@ -23,6 +42,7 @@ module.exports = function CustomMounts(dispatch) {
     }
 	});
 	
+	/*
 	dispatch.hook('C_CHAT', 1, function(event) {
 		let command = format.stripTags(event.message).split(' ');
 		if(command[0] === '!mount') {
@@ -38,7 +58,7 @@ module.exports = function CustomMounts(dispatch) {
 			}
 			return false;
 		}
-	});	
+	});
 	
 	function systemMsg(msg) {
         dispatch.toClient('S_CHAT', 1, {
@@ -51,5 +71,9 @@ module.exports = function CustomMounts(dispatch) {
             message: ' (Custom-Mount) ' + msg
         });
     }
+	*/
+	function saveMount() {
+		fs.writeFileSync(path.join(__dirname, 'mount.json'), JSON.stringify(customMount))
+	}
 	
 }
