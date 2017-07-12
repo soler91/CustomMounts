@@ -3,6 +3,11 @@
 
 Remembers last mount used, it's saved in mount.json.
 
+# Mount list
+Credits to:Shikie
+
+https://docs.google.com/spreadsheets/d/1kPzMLYn7loEoQGbIXR3Cqn0Tkxk9mYlDlL6LJjx2q28/edit#gid=0
+
 # Invalid list
 4,100,105 to 149
 
