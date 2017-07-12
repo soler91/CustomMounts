@@ -8,6 +8,8 @@ Credits to:Shikie
 
 https://docs.google.com/spreadsheets/d/1kPzMLYn7loEoQGbIXR3Cqn0Tkxk9mYlDlL6LJjx2q28/edit#gid=0
 
+However not 100% accurate for NA probably, example 254 is pink wolf and is entirely usable in NA.
+
 # Invalid list
 4,100,105 to 149
 
